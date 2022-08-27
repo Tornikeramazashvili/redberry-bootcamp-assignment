@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/redberry-bootcamp-assignment" element={<Landing />} />
         <Route path="/employeeInformation" element={<EmployeeInformation />} />
         <Route path="/laptopInformation" element={<LaptopInformation />} />
       </Routes>
