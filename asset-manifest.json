@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/redberry-bootcamp-assignment/static/css/main.5fa8c5a2.css",
-    "main.js": "/redberry-bootcamp-assignment/static/js/main.3d321a73.js",
+    "main.css": "/redberry-bootcamp-assignment/static/css/main.889edfb4.css",
+    "main.js": "/redberry-bootcamp-assignment/static/js/main.816ea108.js",
     "static/media/HelveticaNeue.ttc": "/redberry-bootcamp-assignment/static/media/HelveticaNeue.67d426c3bd180e2ea838.ttc",
     "static/media/landingLogo.png": "/redberry-bootcamp-assignment/static/media/landingLogo.f63cdeb5238c63d48669.png",
     "index.html": "/redberry-bootcamp-assignment/index.html",
-    "main.5fa8c5a2.css.map": "/redberry-bootcamp-assignment/static/css/main.5fa8c5a2.css.map",
-    "main.3d321a73.js.map": "/redberry-bootcamp-assignment/static/js/main.3d321a73.js.map"
+    "main.889edfb4.css.map": "/redberry-bootcamp-assignment/static/css/main.889edfb4.css.map",
+    "main.816ea108.js.map": "/redberry-bootcamp-assignment/static/js/main.816ea108.js.map"
   },
   "entrypoints": [
-    "static/css/main.5fa8c5a2.css",
-    "static/js/main.3d321a73.js"
+    "static/css/main.889edfb4.css",
+    "static/js/main.816ea108.js"
   ]
 }
