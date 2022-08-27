@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/redberry-bootcamp-assignment/static/css/main.889edfb4.css",
-    "main.js": "/redberry-bootcamp-assignment/static/js/main.3ef9c87b.js",
+    "main.js": "/redberry-bootcamp-assignment/static/js/main.8430dbeb.js",
     "static/media/HelveticaNeue.ttc": "/redberry-bootcamp-assignment/static/media/HelveticaNeue.67d426c3bd180e2ea838.ttc",
     "static/media/landingLogo.png": "/redberry-bootcamp-assignment/static/media/landingLogo.f63cdeb5238c63d48669.png",
     "index.html": "/redberry-bootcamp-assignment/index.html",
     "main.889edfb4.css.map": "/redberry-bootcamp-assignment/static/css/main.889edfb4.css.map",
-    "main.3ef9c87b.js.map": "/redberry-bootcamp-assignment/static/js/main.3ef9c87b.js.map"
+    "main.8430dbeb.js.map": "/redberry-bootcamp-assignment/static/js/main.8430dbeb.js.map"
   },
   "entrypoints": [
     "static/css/main.889edfb4.css",
-    "static/js/main.3ef9c87b.js"
+    "static/js/main.8430dbeb.js"
   ]
 }
