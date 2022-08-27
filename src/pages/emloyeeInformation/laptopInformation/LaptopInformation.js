@@ -9,7 +9,7 @@ export default function LaptopInformation() {
     <>
       <div className="container">
         <div className="goBack-container">
-          <Link to="/">
+          <Link to="/redberry-bootcamp-assignment">
             <img src={goBackIcon} alt="Go back icon" />
           </Link>
         </div>
@@ -19,7 +19,7 @@ export default function LaptopInformation() {
           </Link>
           <Link to="/laptopInformation" className="L-laptopInformation">
             ლეპტოპის მახასიათებლები
-          </Link>
+          </Link>gi
         </div>
       </div>
     </>

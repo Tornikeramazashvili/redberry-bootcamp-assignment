@@ -9,7 +9,7 @@ export default function EmployeeInformation() {
     <>
       <div className="container">
         <div className="goBack-container">
-          <Link to="/">
+          <Link to="/redberry-bootcamp-assignment">
             <img src={goBackIcon} alt="Go back icon" />
           </Link>
         </div>
