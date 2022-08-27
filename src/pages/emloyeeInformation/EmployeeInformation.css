@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "HelveticaNeue";
+  src: local("HelveticaNeue"),
+    url("../../assets/fonts/HelveticaNeue.ttc") format("truetype");
+  font-weight: normal;
+}
+
+.E-employeeInformation {
+  font-family: "HelveticaNeue";
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #232323;
+  cursor: pointer;
+  /* border-bottom-color: black;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  padding-bottom: 15px; */
+  /* width: 250px; */
+  height: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.E-employeeInformation::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  bottom: 0px;
+  width: 175px; /* or 100px */
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.E-laptopInformation {
+  font-family: "HelveticaNeue";
+  text-decoration: none;
+  font-size: 20px;
+  color: #232323;
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  column-gap: 50px;
+  justify-content: center;
+}

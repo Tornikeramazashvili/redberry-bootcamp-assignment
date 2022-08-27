@@ -1,23 +1,32 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
+import "../../pages/landing/Landing.css";
 import redberryLogo from "../../assets/images/redberryLogo.png";
 import landingLogo from "../../assets/images/landingLogo.png";
-import "../../pages/landing/Landing.css";
 
 export default function Landing() {
+  const navigate = useNavigate();
+
   return (
     <>
-      <div className="container">
-        <div className="image-container">
+      <div className="L-container">
+        <div className="L-image-container">
           <img
             src={redberryLogo}
             alt="Redberry logo"
-            className="redberryLogo"
+            className="L-redberryLogo"
           />
-          <img src={landingLogo} alt="Landing logo" className="landingLogo" />
+          <img src={landingLogo} alt="Landing logo" className="L-landingLogo" />
         </div>
-        <div className="button-container">
-          <button className="addEntriesButton">ჩანაწერის დამატება</button>
-          <button className="addEntriesButton">ჩანაწერების სია</button>
+        <div className="L-button-container">
+          <button
+            className="L-addEntriesButton"
+            onClick={() => navigate("/employeeInformation")}
+          >
+            ჩანაწერის დამატება
+          </button>
+          <button className="L-addEntriesButton">ჩანაწერების სია</button>
         </div>
       </div>
     </>

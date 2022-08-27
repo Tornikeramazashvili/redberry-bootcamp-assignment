@@ -1,4 +1,11 @@
-.container {
+@font-face {
+  font-family: "HelveticaNeue";
+  src: local("HelveticaNeue"),
+    url("../../assets/fonts/HelveticaNeue.ttc") format("truetype");
+  font-weight: normal;
+}
+
+.L-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,25 +13,25 @@
   margin-top: 79px;
 }
 
-.image-container {
+.L-image-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.landingLogo {
+.L-landingLogo {
   margin-top: 85px;
 }
 
-.button-container {
+.L-button-container {
   margin-top: 123px;
   display: flex;
   flex-direction: column;
   row-gap: 26px;
 }
 
-.addEntriesButton {
+.L-addEntriesButton {
   padding: 18px 82px;
   background-color: #62a1eb;
   border: none;
@@ -36,9 +43,7 @@
   color: #ffffff;
 }
 
-@font-face {
-  font-family: "HelveticaNeue";
-  src: local("HelveticaNeue"),
-    url("../../assets/fonts/HelveticaNeue.ttc") format("truetype");
-  font-weight: normal;
+.L-addEntriesButton:hover {
+  background-color: #317ad0;
+  transition: 0.2s;
 }
