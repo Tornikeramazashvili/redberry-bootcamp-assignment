@@ -1,0 +1,117 @@
+.formContainer {
+  background-color: #f6f6f6;
+  padding: 96px 174px 44px 174px;
+  border-radius: 18px;
+  margin: 27px 0px 67px 0px;
+}
+
+form {
+  margin: 0 auto;
+  justify-content: center;
+  display: grid;
+}
+
+label {
+  font-size: 18px;
+}
+
+.nameAndSurnameContainer {
+  display: flex;
+  column-gap: 63px;
+}
+
+.nameContainer,
+.surnameContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.nameInput,
+.surnameInput {
+  width: 407px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  outline: none;
+  border: 1.8px solid #8ac0e2;
+}
+
+input::placeholder {
+  font-size: 16px;
+}
+
+select {
+  background-color: #ebebeb;
+  margin-top: 51px;
+  width: 100%;
+  display: block;
+  border: none;
+  padding: 20px 83px 20px 16px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 18px;
+}
+
+option {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  background-color: white;
+}
+
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding-right: 15px;
+  background-image: url("../assets/icons/dropdownIcon.png");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 25px) center;
+}
+
+.mailContainer {
+  margin-top: 51px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.mailInput {
+  padding: 16px 20px;
+  border-radius: 8px;
+  outline: none;
+  border: 1.8px solid #8ac0e2;
+}
+
+.inputMessage {
+  font-size: 14px;
+  color: #2e2e2e;
+}
+
+.mobileContainer {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 95px;
+}
+
+.nextButton {
+  background-color: #62a1eb;
+  padding: 18px 46px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.nextButton:hover {
+  background-color: #317ad0;
+  transition: 0.2s;
+}
