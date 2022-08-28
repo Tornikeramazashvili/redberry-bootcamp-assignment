@@ -86,6 +86,7 @@ select {
 .inputMessage {
   font-size: 14px;
   color: #2e2e2e;
+  cursor: default;
 }
 
 .mobileContainer {

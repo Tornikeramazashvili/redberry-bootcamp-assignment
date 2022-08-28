@@ -22,12 +22,12 @@ export default function EmployeeInformation() {
           ლეპტოპის მახასიათებლები
         </Link>
       </div>
-      {/* <div className="E-formContainer">
+      <div className="E-formContainer">
         <FormInput />
       </div>
       <div className="E-redberryLogoContainer">
         <img src={redberryOnlyLogo} alt="Redberry logo" />
-      </div> */}
+      </div>
     </div>
   );
 }

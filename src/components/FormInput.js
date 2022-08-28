@@ -1,20 +1,78 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "../components/FormInput.css";
 
 const FormInput = () => {
+  const [values, setValues] = useState(getFormValues);
+
+  // running useEffect after changes that may happen to the DOM,
+  // setting information and saving changes of VALUES in localStorage
+  useEffect(() => {
+    localStorage.setItem("employee-information", JSON.stringify(values));
+  }, [values]);
+
+  // getting values that are already saved in localStorage,
+  // and checking with if...else statement to see results eventually
+  function getFormValues() {
+    const storedValues = localStorage.getItem("employee-information");
+    if (!storedValues)
+      return {
+        name: "",
+        surname: "",
+        email: "",
+        mobile: "",
+      };
+    return JSON.parse(storedValues);
+  }
+
+  // Preventing form from submitting
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  // detecting and storing input values
+  function handleChange(event) {
+    setValues((previousValues) => ({
+      ...previousValues,
+      [event.target.name]: event.target.value,
+    }));
+  }
+
+  const navigate = useNavigate();
+
   return (
     <div className="formContainer">
-      <form>
+      <form action="" method="POST" onSubmit={handleSubmit}>
         <div className="nameAndSurnameContainer">
           <div className="nameContainer">
             <label>სახელი</label>
-            <input placeholder="გრიშა" required className="nameInput" />
+            <input
+              minLength="2"
+              type="text"
+              required
+              placeholder="გრიშა"
+              className="nameInput"
+              value={values.name}
+              name="name"
+              onChange={handleChange}
+            />
             <span className="inputMessage">
               მინიმუმ 2 სიმბოლო, ქართული ასოები
             </span>
           </div>
           <div className="surnameContainer">
             <label>გვარი</label>
-            <input placeholder="ბაგრატიონი" required className="surnameInput" />
+            <input
+              minLength="2"
+              type="text"
+              required
+              placeholder="ბაგრატიონი"
+              className="surnameInput"
+              name="surname"
+              value={values.surname}
+              onChange={handleChange}
+            />
             <span className="inputMessage">
               მინიმუმ 2 სიმბოლო, ქართული ასოები
             </span>
@@ -39,9 +97,13 @@ const FormInput = () => {
         <div className="mailContainer">
           <label>მეილი</label>
           <input
-            placeholder="grish666@redberry.ge"
+            type="email"
             required
+            placeholder="grish666@redberry.ge"
             className="mailInput"
+            name="email"
+            value={values.email}
+            onChange={handleChange}
           />
           <span className="inputMessage">
             უნდა მთავრდებოდეს @redberry.ge-ით
@@ -50,18 +112,27 @@ const FormInput = () => {
         <div className="mobileContainer">
           <label>ტელეფონის ნომერი</label>
           <input
+            required
             type="text"
             maxLength="13"
             placeholder="+995 598 00 07 01"
-            required
             className="mailInput"
+            name="mobile"
+            value={values.mobile}
+            onChange={handleChange}
           />
           <span className="inputMessage">
             უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს
           </span>
         </div>
         <div className="buttonContainer">
-          <button className="nextButton">შემდეგი</button>
+          <button
+            type="submit"
+            className="nextButton"
+            onClick={() => navigate("/laptopInformation")}
+          >
+            შემდეგი
+          </button>
         </div>
       </form>
     </div>

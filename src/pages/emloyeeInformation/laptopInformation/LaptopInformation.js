@@ -24,11 +24,11 @@ export default function LaptopInformation() {
           </Link>
         </div>
         <div className="E-formContainer">
-          <FormInput />
+          {/* <FormInput /> */}
         </div>
-        <div className="E-redberryLogoContainer">
+        {/* <div className="E-redberryLogoContainer">
           <img src={redberryOnlyLogo} alt="Redberry logo" />
-        </div>
+        </div> */}
       </div>
     </>
   );
