@@ -1,0 +1,228 @@
+.laptopFormContainer {
+  background-color: #f6f6f6;
+  padding: 96px 174px 44px 174px;
+  border-radius: 18px;
+  margin: 27px 0px 67px 0px;
+}
+
+.laptopBrandContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 63px;
+  border-bottom-color: #c7c7c7;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  padding-bottom: 52px;
+}
+
+.laptopBrandSelect {
+  height: 56px;
+  width: 408px;
+  background-color: #ebebeb;
+  display: block;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 18px;
+  padding: 16px 20px;
+}
+
+.laptopInput {
+  font-size: 16px;
+  width: 408px;
+  height: 60px;
+  text-indent: 16px;
+  border-radius: 8px;
+  outline: none;
+  border: 1.8px solid #8ac0e2;
+}
+
+.laptopNameContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.laptopImageContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.laptopImageUploadText {
+  color: #4386a9;
+  font-size: 20px;
+  position: absolute;
+  top: 107px;
+  width: 195px;
+  text-align: center;
+  cursor: default;
+}
+
+.laptopImageUploadButton {
+  background-color: #62a1eb;
+  padding: 18px 70px;
+  color: #ffffff;
+  font-size: 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: absolute;
+  top: 250px;
+}
+
+.laptopCPUcontainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  align-items: center;
+}
+
+.laptopCPUselect {
+  height: 56px;
+  width: 277px;
+  background-color: #ebebeb;
+  display: block;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 18px;
+  padding: 16px 20px;
+}
+
+.laptopCPUInput {
+  height: 60px;
+  text-indent: 16px;
+  border-radius: 8px;
+  outline: none;
+  border: 1.8px solid #8ac0e2;
+  width: 250px;
+  font-size: 16px;
+}
+
+.laptopCPUinputContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.laptopCPUtext {
+  font-size: 18px;
+  color: #000000;
+  font-weight: 500;
+  cursor: default;
+}
+
+.laptopCPUmessage {
+  color: #2e2e2e;
+  font-size: 14px;
+  font-weight: 300;
+  cursor: default;
+}
+
+.laptopRAM {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.laptopRAMinput {
+  font-size: 16px;
+  width: 408px;
+  height: 60px;
+  text-indent: 16px;
+  border-radius: 8px;
+  outline: none;
+  border: 1.8px solid #8ac0e2;
+}
+
+.laptopRAMcontainer {
+  margin-top: 49px;
+  display: flex;
+  border-bottom-color: #c7c7c7;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  padding-bottom: 52px;
+}
+
+.laptopRAMmemory {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 63px;
+  margin-left: 63px;
+}
+
+.laptopMemoryType {
+  margin-left: 38px;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 400;
+}
+
+.laptopCPUinputContainer {
+  position: relative;
+}
+
+.laptopCPUinput {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+}
+
+.laptopCPUtypeInput {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  margin-left: 60px;
+}
+
+.laptopCPUtypeText {
+  margin-left: 100px;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 400;
+}
+
+.laptopPurchaseContainer {
+  display: flex;
+  column-gap: 63px;
+  margin-top: 50px;
+}
+
+.laptopPurchase {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.laptopPostureContainer {
+  margin-top: 28px;
+}
+
+.laptopButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 76px;
+}
+
+.laptopBackButton {
+  color: #62a1eb;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.laptopSaveButton {
+  background-color: #62a1eb;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 18px 36px;
+  border-radius: 8px;
+  cursor: pointer;
+}

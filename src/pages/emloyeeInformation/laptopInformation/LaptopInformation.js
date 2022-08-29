@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import "../../../pages/emloyeeInformation/laptopInformation/LaptopInformation.css";
 import goBackIcon from "../../../assets/icons/goBackIcon.png";
 import redberryOnlyLogo from "../../../assets/images/redberryOnlyLogo.png";
-import FormInput from "../../../components/FormInput";
+import LaptopForm from "../../../components/LaptopForm"
+
 
 export default function LaptopInformation() {
   return (
@@ -24,11 +25,11 @@ export default function LaptopInformation() {
           </Link>
         </div>
         <div className="E-formContainer">
-          {/* <FormInput /> */}
+       <LaptopForm/>
         </div>
-        {/* <div className="E-redberryLogoContainer">
+        <div className="E-redberryLogoContainer">
           <img src={redberryOnlyLogo} alt="Redberry logo" />
-        </div> */}
+        </div>
       </div>
     </>
   );

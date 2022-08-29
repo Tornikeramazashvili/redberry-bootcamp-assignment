@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "../components/FormInput.css";
+import "../components/EmployeeForm.css";
 
-const FormInput = () => {
+const EmployeeForm = () => {
   const [values, setValues] = useState(getFormValues);
 
   // running useEffect after changes that may happen to the DOM,
@@ -41,6 +41,10 @@ const FormInput = () => {
 
   const navigate = useNavigate();
 
+  function clearLocalStorage() {
+    localStorage.clear();
+  }
+
   return (
     <div className="formContainer">
       <form action="" method="POST" onSubmit={handleSubmit}>
@@ -53,8 +57,8 @@ const FormInput = () => {
               required
               placeholder="გრიშა"
               className="nameInput"
-              value={values.name}
               name="name"
+              value={values.name}
               onChange={handleChange}
             />
             <span className="inputMessage">
@@ -78,7 +82,7 @@ const FormInput = () => {
             </span>
           </div>
         </div>
-        <select>
+        <select className="positionSelect">
           <option hidden="true">თიმი</option>
           <option>დეველოპმენტი</option>
           <option>HR</option>
@@ -86,7 +90,7 @@ const FormInput = () => {
           <option>დიზაინი</option>
           <option>მარკეტინგი</option>
         </select>
-        <select>
+        <select className="positionSelect">
           <option hidden="true">პოზიცია</option>
           <option>დეველოპმენტი</option>
           <option>HR</option>
@@ -133,10 +137,11 @@ const FormInput = () => {
           >
             შემდეგი
           </button>
+          <button onClick={clearLocalStorage}>Clear local storage</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default FormInput;
+export default EmployeeForm;

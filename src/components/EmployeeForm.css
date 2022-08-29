@@ -29,18 +29,16 @@ label {
 
 .nameInput,
 .surnameInput {
-  width: 407px;
-  padding: 16px 20px;
+  font-size: 16px;
+  width: 408px;
+  height: 60px;
+  text-indent: 16px;
   border-radius: 8px;
   outline: none;
   border: 1.8px solid #8ac0e2;
 }
 
-input::placeholder {
-  font-size: 16px;
-}
-
-select {
+.positionSelect {
   background-color: #ebebeb;
   margin-top: 51px;
   width: 100%;
@@ -77,7 +75,9 @@ select {
 }
 
 .mailInput {
-  padding: 16px 20px;
+  height: 60px;
+  font-size: 16px;
+  text-indent: 16px;
   border-radius: 8px;
   outline: none;
   border: 1.8px solid #8ac0e2;

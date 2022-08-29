@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import redberryOnlyLogo from "../../assets/images/redberryOnlyLogo.png";
 import "../../pages/emloyeeInformation/EmployeeInformation.css";
 import goBackIcon from "../../assets/icons/goBackIcon.png";
-import FormInput from "../../components/FormInput";
+// import FormInput from "../../components/EmployeeForm";
+import EmployeeForm from "../../components/EmployeeForm";
 
 export default function EmployeeInformation() {
   return (
@@ -23,7 +24,7 @@ export default function EmployeeInformation() {
         </Link>
       </div>
       <div className="E-formContainer">
-        <FormInput />
+        <EmployeeForm />
       </div>
       <div className="E-redberryLogoContainer">
         <img src={redberryOnlyLogo} alt="Redberry logo" />
