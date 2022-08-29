@@ -41,9 +41,12 @@ const EmployeeForm = () => {
 
   const navigate = useNavigate();
 
-  function clearLocalStorage() {
-    localStorage.clear();
-  }
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     localStorage.clear();
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className="formContainer">
@@ -137,7 +140,6 @@ const EmployeeForm = () => {
           >
             შემდეგი
           </button>
-          <button onClick={clearLocalStorage}>Clear local storage</button>
         </div>
       </form>
     </div>

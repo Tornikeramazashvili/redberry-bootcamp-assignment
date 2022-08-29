@@ -1,15 +1,50 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import "../components/LaptopForm.css";
 import uploadImageFrame from "../assets/images/uploadImageFrame.png";
 
 export default function LaptopForm() {
-  const navigate = useNavigate();
+  const [laptopValues, setLaptopValues] = useState(getLaptopFormValues);
+
+  // running useEffect after changes that may happen to the DOM,
+  // setting information and saving changes of VALUES in localStorage
+  useEffect(() => {
+    localStorage.setItem("employee-information", JSON.stringify(laptopValues));
+  }, [laptopValues]);
+
+  // getting values that are already saved in localStorage,
+  // and checking with if...else statement to see results eventually
+  function getLaptopFormValues() {
+    const storedValues = localStorage.getItem("employee-information");
+    if (!storedValues)
+      return {
+        laptop: "",
+        CPUcore: "",
+        CPUstream: "",
+        CPUram: "",
+        purchuaseDate: "",
+        laptopPrice: "",
+      };
+    return JSON.parse(storedValues);
+  }
+
+  // Preventing form from submitting
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  // detecting and storing input values
+  function handleChange(event) {
+    setLaptopValues((previousValues) => ({
+      ...previousValues,
+      [event.target.name]: event.target.value,
+    }));
+  }
 
   return (
     <div className="laptopFormContainer">
-      <form action="" method="POST">
+      <form action="" method="POST" onSubmit={handleSubmit}>
         <div className="laptopImageContainer">
           <span className="laptopImageUploadText">
             ჩააგდე ან ატვირთე ლეპტოპის ფოტო
@@ -23,12 +58,11 @@ export default function LaptopForm() {
             <input
               minLength="2"
               type="text"
-              // required
               placeholder="HP"
               className="laptopInput"
-              // value={values.name}
-              // name="name"
-              // onChange={handleChange}
+              name="laptop"
+              value={laptopValues.laptop}
+              onChange={handleChange}
             />
             <span className="inputMessage">
               ლათინური ასოები, ციფრები, !@#$%^&*()_+=
@@ -56,19 +90,37 @@ export default function LaptopForm() {
           </select>
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ბირთვი</span>
-            <input className="laptopCPUInput" placeholder="14" />
+            <input
+              className="laptopCPUInput"
+              placeholder="14"
+              name="CPUcore"
+              values={laptopValues.CPUcore}
+              onChange={handleChange}
+            />
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
           </div>
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ნაკადი</span>
-            <input className="laptopCPUInput" placeholder="365" />
+            <input
+              className="laptopCPUInput"
+              placeholder="365"
+              name="CPUstream"
+              value={laptopValues.CPUstream}
+              onChange={handleChange}
+            />
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
           </div>
         </div>
         <div className="laptopRAMcontainer">
           <div className="laptopRAM">
             <span className="laptopCPUtext">ლეპტოპის RAM (GB)</span>
-            <input className="laptopRAMinput" placeholder="16" />
+            <input
+              className="laptopRAMinput"
+              placeholder="16"
+              name="CPUram"
+              values={laptopValues.CPUram}
+              onChange={handleChange}
+            />
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
           </div>
           <div className="laptopRAMmemory">
@@ -88,24 +140,22 @@ export default function LaptopForm() {
             <label>შეძენის რიცხვი (არჩევითი)</label>
             <input
               type="text"
-              // required
               placeholder="დდ / თთ / წწწწ"
               className="laptopInput"
-              // value={values.name}
-              // name="name"
-              // onChange={handleChange}
+              name="purchuaseDate"
+              value={laptopValues.purchuaseDate}
+              onChange={handleChange}
             />
           </div>
           <div className="laptopPurchase">
             <label>ლეპტოპის ფასი</label>
             <input
               type="text"
-              // required
               placeholder="0000"
               className="laptopInput"
-              // value={values.name}
-              // name="name"
-              // onChange={handleChange}
+              name="laptopPrice"
+              value={laptopValues.laptopPrice}
+              onChange={handleChange}
             />
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
           </div>

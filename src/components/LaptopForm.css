@@ -17,7 +17,7 @@
 }
 
 .laptopBrandSelect {
-  height: 56px;
+  height: 60px;
   width: 408px;
   background-color: #ebebeb;
   display: block;
@@ -81,7 +81,7 @@
 }
 
 .laptopCPUselect {
-  height: 56px;
+  height: 60px;
   width: 277px;
   background-color: #ebebeb;
   display: block;
@@ -152,7 +152,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  height: 63px;
+  height: 70px;
   margin-left: 63px;
 }
 
@@ -217,6 +217,11 @@
   text-decoration: none;
 }
 
+.laptopBackButton:hover {
+  color: #317ad0;
+  transition: 0.2s;
+}
+
 .laptopSaveButton {
   background-color: #62a1eb;
   border: none;
@@ -225,4 +230,9 @@
   padding: 18px 36px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.laptopSaveButton:hover {
+  background-color: #317ad0;
+  transition: 0.2s;
 }
