@@ -73,6 +73,11 @@
   top: 250px;
 }
 
+.laptopImageUploadButton:hover {
+  background-color: #317ad0;
+  transition: 0.2s;
+}
+
 .laptopCPUcontainer {
   display: flex;
   justify-content: space-between;
@@ -235,4 +240,14 @@
 .laptopSaveButton:hover {
   background-color: #317ad0;
   transition: 0.2s;
+}
+
+.inputa{
+  display: none;
+}
+
+.zabuza{
+  display: block;
+  width: 120px;
+  height: 30px;
 }

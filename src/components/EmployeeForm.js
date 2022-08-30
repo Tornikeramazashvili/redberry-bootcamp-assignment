@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 
 import "../components/EmployeeForm.css";
 
 const EmployeeForm = () => {
+  const navigate = useNavigate();
+
+  // Hooks for storing data
   const [values, setValues] = useState(getFormValues);
 
   // running useEffect after changes that may happen to the DOM,
@@ -39,14 +43,30 @@ const EmployeeForm = () => {
     }));
   }
 
-  const navigate = useNavigate();
-
   // useEffect(() => {
   //   const interval = setInterval(() => {
   //     localStorage.clear();
   //   }, 1000);
   //   return () => clearInterval(interval);
   // }, []);
+
+  // // Fetching data for swagger
+  const [teams, setTeams] = useState([]);
+  const [positions, setPositions] = useState([]);
+
+  useEffect(() => {
+    Axios.get("https://pcfy.redberryinternship.ge/api/teams").then(
+      (response) => {
+        setTeams(response.data.data);
+      }
+    );
+    Axios.get("https://pcfy.redberryinternship.ge/api/positions").then(
+      (response) => {
+        setPositions(response.data.data);
+      }
+    );
+  }, []);
+
 
   return (
     <div className="formContainer">
@@ -86,20 +106,14 @@ const EmployeeForm = () => {
           </div>
         </div>
         <select className="positionSelect">
-          <option hidden="true">თიმი</option>
-          <option>დეველოპმენტი</option>
-          <option>HR</option>
-          <option>გაყიდვები</option>
-          <option>დიზაინი</option>
-          <option>მარკეტინგი</option>
+          {teams.map((team, index) => (
+            <option key={index}>{team.name}</option>
+          ))}
         </select>
         <select className="positionSelect">
-          <option hidden="true">პოზიცია</option>
-          <option>დეველოპმენტი</option>
-          <option>HR</option>
-          <option>გაყიდვები</option>
-          <option>დიზაინი</option>
-          <option>მარკეტინგი</option>
+          {positions.map((position, index) => (
+            <option key={index}>{position.name}</option>
+          ))}
         </select>
         <div className="mailContainer">
           <label>მეილი</label>

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 import "../components/LaptopForm.css";
 import uploadImageFrame from "../assets/images/uploadImageFrame.png";
@@ -43,12 +44,54 @@ export default function LaptopForm() {
     }));
   }
 
+  // Created useRef for upload button
+  //  and used axios to post picture on Cloudinary (testing)
+  const inputRef = useRef();
+  const [imageSelected, setImageSelected] = useState("");
+
+  const uploadImage = () => {
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", "ouniqbm3");
+
+    Axios.post(
+      "https://api.cloudinary.com/v1_1/dzdluvy3z/image/upload",
+      formData
+    )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((response) => {
+        console.log(response.response.data?.error?.message);
+      });
+  };
+
+  // original_filename
+  // bytes
+
   // useEffect(() => {
   //   const interval = setInterval(() => {
   //     localStorage.clear();
   //   }, 1000);
   //   return () => clearInterval(interval);
   // }, []);
+
+  // Fetching data from swagger
+  const [brands, setBrands] = useState([]);
+  const [CPUs, setCPUs] = useState([]);
+
+  useEffect(() => {
+    Axios.get("https://pcfy.redberryinternship.ge/api/brands").then(
+      (response) => {
+        setBrands(response.data.data);
+      }
+    );
+    Axios.get("https://pcfy.redberryinternship.ge/api/cpus").then(
+      (response) => {
+        setCPUs(response.data.data);
+      }
+    );
+  }, []);
 
   return (
     <div className="laptopFormContainer">
@@ -57,14 +100,29 @@ export default function LaptopForm() {
           <span className="laptopImageUploadText">
             ჩააგდე ან ატვირთე ლეპტოპის ფოტო
           </span>
-          <button className="laptopImageUploadButton">ატვირთე</button>
+          <button
+            onClick={() => {
+              console.log(inputRef);
+              inputRef.current.click();
+            }}
+            className="laptopImageUploadButton"
+          >
+            ატვირთე
+          </button>
+          <input
+            ref={inputRef}
+            type="file"
+            hidden
+            onChange={(event) => {
+              setImageSelected(event.target.files[0]);
+            }}
+          />
           <img src={uploadImageFrame} alt="Upload frame" />
         </div>
         <div className="laptopBrandContainer">
           <div className="laptopNameContainer">
             <label>ლეპტოპის სახელი</label>
             <input
-              required
               minLength="2"
               type="text"
               placeholder="HP"
@@ -79,28 +137,21 @@ export default function LaptopForm() {
           </div>
           <div>
             <select className="laptopBrandSelect">
-              <option hidden="true">ლეპტოპის ბრენდი</option>
-              <option>HP</option>
-              <option>Dell</option>
-              <option>Miscrosoft</option>
-              <option>Apple</option>
-              <option>Lenovo</option>
+              {brands.map((brand, index) => (
+                <option key={index}>{brand.name}</option>
+              ))}
             </select>
           </div>
         </div>
         <div className="laptopCPUcontainer">
           <select className="laptopCPUselect">
-            <option hidden="true">CPU</option>
-            <option>Intel Core i3</option>
-            <option>Intel Core i5</option>
-            <option>Intel Core i7</option>
-            <option>Intel Core i9</option>
-            <option>AMD Ryzen 3</option>
+            {CPUs.map((CPU, index) => (
+              <option key={index}>{CPU.name}</option>
+            ))}
           </select>
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ბირთვი</span>
             <input
-              required
               className="laptopCPUInput"
               placeholder="14"
               name="CPUcore"
@@ -112,7 +163,6 @@ export default function LaptopForm() {
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ნაკადი</span>
             <input
-              required
               className="laptopCPUInput"
               placeholder="365"
               name="CPUstream"
@@ -126,7 +176,6 @@ export default function LaptopForm() {
           <div className="laptopRAM">
             <span className="laptopCPUtext">ლეპტოპის RAM (GB)</span>
             <input
-              required
               className="laptopRAMinput"
               placeholder="16"
               name="CPUram"
@@ -162,7 +211,6 @@ export default function LaptopForm() {
           <div className="laptopPurchase">
             <label>ლეპტოპის ფასი</label>
             <input
-              required
               type="text"
               placeholder="0000"
               className="laptopInput"
@@ -186,7 +234,9 @@ export default function LaptopForm() {
           <Link to={-1} className="laptopBackButton">
             უკან
           </Link>
-          <button className="laptopSaveButton">დამახსოვრება</button>
+          <button className="laptopSaveButton" onClick={uploadImage}>
+            დამახსოვრება
+          </button>
         </div>
       </form>
     </div>
