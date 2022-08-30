@@ -1,0 +1,120 @@
+.END-container {
+  margin: 53px 70px 0px 70px;
+}
+
+.END-goBack-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.END-content-title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.END-content-title-container-hide {
+  visibility: hidden;
+}
+
+.END-content-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #000000;
+  cursor: default;
+}
+
+.END-content-container {
+  margin: 0 200px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 52px;
+  row-gap: 55px;
+  margin-top: 84px;
+}
+
+.END-content-each-product-laptop-container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 84px;
+  border-bottom-color: #a5a5a5;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.END-content-each-product-laptop-information {
+  margin-left: 68px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  font-size: 22px;
+  cursor: default;
+}
+
+.END-content-each-product-employee-information {
+  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  font-size: 22px;
+  cursor: default;
+  color: #797979;
+}
+
+.END-content-each-laptop-information {
+  display: flex;
+  column-gap: 50px;
+  margin-top: 54px;
+  padding-bottom: 77px;
+  border-bottom-color: #a5a5a5;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.END-content-each-laptop-information-double-inner-div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.END-content-each-laptop-information-inner-div {
+  display: flex;
+  column-gap: 88px;
+}
+
+.END-content-each-laptop-title {
+  font-size: 22px;
+  cursor: default;
+}
+
+.END-content-each-laptop-respone {
+  font-size: 22px;
+  color: #797979;
+  cursor: default;
+}
+
+.END-content-each-laptop-CPU-information-inner-div {
+  display: flex;
+  column-gap: 67px;
+  margin-left: 130px;
+}
+
+.END-content-each-laptop-information-second-part {
+  display: flex;
+  column-gap: 50px;
+  margin-top: 54px;
+  padding-bottom: 77px;
+ 
+}
+
+.END-content-each-laptop-information-second-inner-div {
+  display: flex;
+  column-gap: 19px;
+}
+
+.END-content-each-laptop-CPU-information-second-inner-div {
+  display: flex;
+  column-gap: 48px;
+  margin-left: 192px;
+}

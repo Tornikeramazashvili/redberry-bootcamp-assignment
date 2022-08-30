@@ -44,7 +44,7 @@ const EmployeeForm = () => {
   // useEffect(() => {
   //   const interval = setInterval(() => {
   //     localStorage.clear();
-  //   }, 5000);
+  //   }, 1000);
   //   return () => clearInterval(interval);
   // }, []);
 
@@ -55,9 +55,9 @@ const EmployeeForm = () => {
           <div className="nameContainer">
             <label>სახელი</label>
             <input
+              required
               minLength="2"
               type="text"
-              required
               placeholder="გრიშა"
               className="nameInput"
               name="name"

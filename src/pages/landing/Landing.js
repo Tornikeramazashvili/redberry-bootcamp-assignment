@@ -26,7 +26,12 @@ export default function Landing() {
           >
             ჩანაწერის დამატება
           </button>
-          <button className="L-addEntriesButton">ჩანაწერების სია</button>
+          <button
+            className="L-addEntriesButton"
+            onClick={() => navigate("/entriesList")}
+          >
+            ჩანაწერების სია
+          </button>
         </div>
       </div>
     </>

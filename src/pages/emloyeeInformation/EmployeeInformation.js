@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import redberryOnlyLogo from "../../assets/images/redberryOnlyLogo.png";
 import "../../pages/emloyeeInformation/EmployeeInformation.css";
+import redberryOnlyLogo from "../../assets/images/redberryOnlyLogo.png";
 import goBackIcon from "../../assets/icons/goBackIcon.png";
-// import FormInput from "../../components/EmployeeForm";
 import EmployeeForm from "../../components/EmployeeForm";
 
 export default function EmployeeInformation() {

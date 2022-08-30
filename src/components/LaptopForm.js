@@ -5,6 +5,7 @@ import "../components/LaptopForm.css";
 import uploadImageFrame from "../assets/images/uploadImageFrame.png";
 
 export default function LaptopForm() {
+  // Hooks for localStorage
   const [laptopValues, setLaptopValues] = useState(getLaptopFormValues);
 
   // running useEffect after changes that may happen to the DOM,
@@ -42,6 +43,13 @@ export default function LaptopForm() {
     }));
   }
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     localStorage.clear();
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   return (
     <div className="laptopFormContainer">
       <form action="" method="POST" onSubmit={handleSubmit}>
@@ -56,6 +64,7 @@ export default function LaptopForm() {
           <div className="laptopNameContainer">
             <label>ლეპტოპის სახელი</label>
             <input
+              required
               minLength="2"
               type="text"
               placeholder="HP"
@@ -91,6 +100,7 @@ export default function LaptopForm() {
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ბირთვი</span>
             <input
+              required
               className="laptopCPUInput"
               placeholder="14"
               name="CPUcore"
@@ -102,6 +112,7 @@ export default function LaptopForm() {
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ნაკადი</span>
             <input
+              required
               className="laptopCPUInput"
               placeholder="365"
               name="CPUstream"
@@ -115,6 +126,7 @@ export default function LaptopForm() {
           <div className="laptopRAM">
             <span className="laptopCPUtext">ლეპტოპის RAM (GB)</span>
             <input
+              required
               className="laptopRAMinput"
               placeholder="16"
               name="CPUram"
@@ -150,6 +162,7 @@ export default function LaptopForm() {
           <div className="laptopPurchase">
             <label>ლეპტოპის ფასი</label>
             <input
+              required
               type="text"
               placeholder="0000"
               className="laptopInput"
