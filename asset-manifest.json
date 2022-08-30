@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/redberry-bootcamp-assignment/static/css/main.337e081d.css",
-    "main.js": "/redberry-bootcamp-assignment/static/js/main.5b8a2ef6.js",
+    "main.css": "/redberry-bootcamp-assignment/static/css/main.fc7c8183.css",
+    "main.js": "/redberry-bootcamp-assignment/static/js/main.abc604fc.js",
     "static/media/HelveticaNeue.ttc": "/redberry-bootcamp-assignment/static/media/HelveticaNeue.67d426c3bd180e2ea838.ttc",
+    "static/media/uploadadLaptopInfo.png": "/redberry-bootcamp-assignment/static/media/uploadadLaptopInfo.3057aacc946d0640f402.png",
     "static/media/landingLogo.png": "/redberry-bootcamp-assignment/static/media/landingLogo.f63cdeb5238c63d48669.png",
+    "static/media/uploadedLaptopImage.png": "/redberry-bootcamp-assignment/static/media/uploadedLaptopImage.4680e6c2618556260e09.png",
     "index.html": "/redberry-bootcamp-assignment/index.html",
-    "main.337e081d.css.map": "/redberry-bootcamp-assignment/static/css/main.337e081d.css.map",
-    "main.5b8a2ef6.js.map": "/redberry-bootcamp-assignment/static/js/main.5b8a2ef6.js.map"
+    "main.fc7c8183.css.map": "/redberry-bootcamp-assignment/static/css/main.fc7c8183.css.map",
+    "main.abc604fc.js.map": "/redberry-bootcamp-assignment/static/js/main.abc604fc.js.map"
   },
   "entrypoints": [
-    "static/css/main.337e081d.css",
-    "static/js/main.5b8a2ef6.js"
+    "static/css/main.fc7c8183.css",
+    "static/js/main.abc604fc.js"
   ]
 }
