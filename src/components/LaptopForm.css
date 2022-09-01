@@ -47,8 +47,44 @@
 .laptopImageContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 80px;
+  margin-bottom: 46px;
   position: relative;
+  width: 878px;
+  height: 423px;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='gainsboro' rx='18' ry='18' stroke='steelblue' stroke-width='4' stroke-dasharray='11' stroke-dashoffset='35' stroke-linecap='round'/%3e%3c/svg%3e");
+  border-radius: 18px;
+}
+
+.laptopImageUploadMessage{
+  margin-top: 40px;
+  margin-bottom: 60px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.laptopUploadImageAgainButton{
+  background-color: #62A1EB;
+  padding: 18px 24px;
+  border-radius: 8px;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.laptopImageUploadMessageBox{
+  display: flex;
+  align-items: center;
+}
+
+.laptopImageUploadMessageText{
+  margin-left: 25px;
+}
+
+.laptopUploadImageAgainButton:hover{
+  background-color: #317ad0;
+  transition: 0.2s;
 }
 
 .laptopImageUploadText {
@@ -62,7 +98,7 @@
 }
 
 .laptopImageUploadButton {
-  background-color: #62a1eb;
+  background-color: #62a2ec;
   padding: 18px 70px;
   color: #ffffff;
   font-size: 20px;
@@ -242,11 +278,11 @@
   transition: 0.2s;
 }
 
-.inputa{
+.inputa {
   display: none;
 }
 
-.zabuza{
+.zabuza {
   display: block;
   width: 120px;
   height: 30px;

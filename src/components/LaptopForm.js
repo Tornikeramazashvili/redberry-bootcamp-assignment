@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 import Axios from "axios";
 
 import "../components/LaptopForm.css";
-import uploadImageFrame from "../assets/images/uploadImageFrame.png";
+// import checkmarkIcon from "../assets/icons/checkmarkIcon.png";
+import {PopupMessage} from "./PopupMessage";
 
 export default function LaptopForm() {
   // Hooks for localStorage
@@ -45,7 +47,7 @@ export default function LaptopForm() {
   }
 
   // Created useRef for upload button
-  //  and used axios to post picture on Cloudinary (testing)
+  // and used axios to post picture on Cloudinary (testing)
   const inputRef = useRef();
   const [imageSelected, setImageSelected] = useState("");
 
@@ -59,15 +61,19 @@ export default function LaptopForm() {
       formData
     )
       .then((response) => {
-        console.log(response);
+        setSentImageName(response.data.original_filename);
+        setSentImageFormat(response.data.format);
+        setSentImageBytes(bytesToMegaBytes(response.data.bytes).toFixed(2));
       })
       .catch((response) => {
         console.log(response.response.data?.error?.message);
       });
   };
 
-  // original_filename
-  // bytes
+  const bytesToMegaBytes = (bytes) => bytes / 1024 ** 2;
+  const [sentImageName, setSentImageName] = useState("");
+  const [sentImageFormat, setSentImageFormat] = useState("");
+  const [sentImageBytes, setSentImageBytes] = useState("");
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
@@ -76,7 +82,7 @@ export default function LaptopForm() {
   //   return () => clearInterval(interval);
   // }, []);
 
-  // Fetching data from swagger
+  // Fetching API data with Axios
   const [brands, setBrands] = useState([]);
   const [CPUs, setCPUs] = useState([]);
 
@@ -117,8 +123,19 @@ export default function LaptopForm() {
               setImageSelected(event.target.files[0]);
             }}
           />
-          <img src={uploadImageFrame} alt="Upload frame" />
         </div>
+        {/* <div className="laptopImageUploadMessage">
+          <div className="laptopImageUploadMessageBox">
+            <img src={checkmarkIcon} alt="Checkmark" />
+            <span className="laptopImageUploadMessageText">
+              {sentImageName}.{sentImageFormat}, {sentImageBytes} mb
+            </span>
+          </div>
+
+          <button className="laptopUploadImageAgainButton">
+            თავიდან ატვირთე
+          </button>
+        </div> */}
         <div className="laptopBrandContainer">
           <div className="laptopNameContainer">
             <label>ლეპტოპის სახელი</label>
@@ -234,9 +251,16 @@ export default function LaptopForm() {
           <Link to={-1} className="laptopBackButton">
             უკან
           </Link>
-          <button className="laptopSaveButton" onClick={uploadImage}>
-            დამახსოვრება
-          </button>
+          <Popup
+            trigger={
+              <button className="laptopSaveButton" onClick={uploadImage}>
+                დამახსოვრება
+              </button>
+            }
+           
+          >
+            <PopupMessage />
+          </Popup>
         </div>
       </form>
     </div>
