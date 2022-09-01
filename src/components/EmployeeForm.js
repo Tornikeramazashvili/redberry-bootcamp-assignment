@@ -8,24 +8,29 @@ const EmployeeForm = () => {
   const navigate = useNavigate();
 
   // Hooks for storing data
-  const [values, setValues] = useState(getFormValues);
+  const [employeeValues, setEmployeeValues] = useState(getEmployeeValues);
 
   // running useEffect after changes that may happen to the DOM,
   // setting information and saving changes of VALUES in localStorage
   useEffect(() => {
-    localStorage.setItem("employee-information", JSON.stringify(values));
-  }, [values]);
+    localStorage.setItem(
+      "employee-information",
+      JSON.stringify(employeeValues)
+    );
+  }, [employeeValues]);
 
   // getting values that are already saved in localStorage,
   // and checking with if...else statement to see results eventually
-  function getFormValues() {
+  function getEmployeeValues() {
     const storedValues = localStorage.getItem("employee-information");
     if (!storedValues)
       return {
-        name: "",
-        surname: "",
-        email: "",
-        mobile: "",
+        employeeName: "",
+        employeeSurname: "",
+        employeeEmail: "",
+        employeeMobile: "",
+        employeeTeam: "",
+        employeePosition: "",
       };
     return JSON.parse(storedValues);
   }
@@ -37,18 +42,12 @@ const EmployeeForm = () => {
 
   // detecting and storing input values
   function handleChange(event) {
-    setValues((previousValues) => ({
+    setEmployeeValues((previousValues) => ({
       ...previousValues,
       [event.target.name]: event.target.value,
     }));
   }
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     localStorage.clear();
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
 
   // // Fetching data for swagger
   const [teams, setTeams] = useState([]);
@@ -67,7 +66,6 @@ const EmployeeForm = () => {
     );
   }, []);
 
-
   return (
     <div className="formContainer">
       <form action="" method="POST" onSubmit={handleSubmit}>
@@ -75,13 +73,12 @@ const EmployeeForm = () => {
           <div className="nameContainer">
             <label>სახელი</label>
             <input
-              required
               minLength="2"
               type="text"
               placeholder="გრიშა"
               className="nameInput"
-              name="name"
-              value={values.name}
+              name="employeeName"
+              value={employeeValues.employeeName}
               onChange={handleChange}
             />
             <span className="inputMessage">
@@ -93,11 +90,10 @@ const EmployeeForm = () => {
             <input
               minLength="2"
               type="text"
-              required
               placeholder="ბაგრატიონი"
               className="surnameInput"
-              name="surname"
-              value={values.surname}
+              name="employeeSurname"
+              value={employeeValues.employeeSurname}
               onChange={handleChange}
             />
             <span className="inputMessage">
@@ -105,12 +101,22 @@ const EmployeeForm = () => {
             </span>
           </div>
         </div>
-        <select className="positionSelect">
+        <select
+          className="positionSelect"
+          name="employeeTeam"
+          value={employeeValues.employeeTeam}
+          onChange={handleChange}
+        >
           {teams.map((team, index) => (
             <option key={index}>{team.name}</option>
           ))}
         </select>
-        <select className="positionSelect">
+        <select
+          className="positionSelect"
+          name="employeePosition"
+          value={employeeValues.employeePosition}
+          onChange={handleChange}
+        >
           {positions.map((position, index) => (
             <option key={index}>{position.name}</option>
           ))}
@@ -119,11 +125,10 @@ const EmployeeForm = () => {
           <label>მეილი</label>
           <input
             type="email"
-            required
             placeholder="grish666@redberry.ge"
             className="mailInput"
-            name="email"
-            value={values.email}
+            name="employeeEmail"
+            value={employeeValues.employeeEmail}
             onChange={handleChange}
           />
           <span className="inputMessage">
@@ -133,13 +138,12 @@ const EmployeeForm = () => {
         <div className="mobileContainer">
           <label>ტელეფონის ნომერი</label>
           <input
-            required
             type="text"
             maxLength="13"
             placeholder="+995 598 00 07 01"
             className="mailInput"
-            name="mobile"
-            value={values.mobile}
+            name="employeeMobile"
+            value={employeeValues.employeeMobile}
             onChange={handleChange}
           />
           <span className="inputMessage">

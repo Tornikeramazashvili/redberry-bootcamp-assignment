@@ -5,7 +5,7 @@ import Axios from "axios";
 
 import "../components/LaptopForm.css";
 // import checkmarkIcon from "../assets/icons/checkmarkIcon.png";
-import {PopupMessage} from "./PopupMessage";
+import { PopupMessage } from "./PopupMessage";
 
 export default function LaptopForm() {
   // Hooks for localStorage
@@ -23,12 +23,15 @@ export default function LaptopForm() {
     const storedValues = localStorage.getItem("employee-information");
     if (!storedValues)
       return {
-        laptop: "",
-        CPUcore: "",
-        CPUstream: "",
-        CPUram: "",
-        purchuaseDate: "",
+        laptopName: "",
+        laptopBrand:"",
+        laptopCPU:"",
+        laptopCPUcore: "",
+        laptopCPUstream: "",
+        laptopCPUram: "",
+        laptopPurchuaseDate: "",
         laptopPrice: "",
+        laptopImage: "",
       };
     return JSON.parse(storedValues);
   }
@@ -66,7 +69,7 @@ export default function LaptopForm() {
         setSentImageBytes(bytesToMegaBytes(response.data.bytes).toFixed(2));
       })
       .catch((response) => {
-        console.log(response.response.data?.error?.message);
+        setImageDidntSend(response.response.data?.error?.message);
       });
   };
 
@@ -75,12 +78,8 @@ export default function LaptopForm() {
   const [sentImageFormat, setSentImageFormat] = useState("");
   const [sentImageBytes, setSentImageBytes] = useState("");
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     localStorage.clear();
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  const [imageDidntSend, setImageDidntSend] = useState("");
+
 
   // Fetching API data with Axios
   const [brands, setBrands] = useState([]);
@@ -99,10 +98,17 @@ export default function LaptopForm() {
     );
   }, []);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     localStorage.clear();
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   return (
     <div className="laptopFormContainer">
       <form action="" method="POST" onSubmit={handleSubmit}>
-        <div className="laptopImageContainer">
+        <div className={"laptopImageContainer"}>
           <span className="laptopImageUploadText">
             ჩააგდე ან ატვირთე ლეპტოპის ფოტო
           </span>
@@ -122,8 +128,11 @@ export default function LaptopForm() {
             onChange={(event) => {
               setImageSelected(event.target.files[0]);
             }}
+            // value={laptopValues.laptopImage}
+            // onChange={handleChange}
           />
         </div>
+        {/* <span style={{color:'red'}}>{imageDidntSend}</span> */}
         {/* <div className="laptopImageUploadMessage">
           <div className="laptopImageUploadMessageBox">
             <img src={checkmarkIcon} alt="Checkmark" />
@@ -144,8 +153,8 @@ export default function LaptopForm() {
               type="text"
               placeholder="HP"
               className="laptopInput"
-              name="laptop"
-              value={laptopValues.laptop}
+              name="laptopName"
+              value={laptopValues.laptopName}
               onChange={handleChange}
             />
             <span className="inputMessage">
@@ -153,7 +162,12 @@ export default function LaptopForm() {
             </span>
           </div>
           <div>
-            <select className="laptopBrandSelect">
+            <select
+              className="laptopBrandSelect"
+              name="laptopBrand"
+              value={laptopValues.laptopBrand}
+              onChange={handleChange}
+            >
               {brands.map((brand, index) => (
                 <option key={index}>{brand.name}</option>
               ))}
@@ -161,7 +175,12 @@ export default function LaptopForm() {
           </div>
         </div>
         <div className="laptopCPUcontainer">
-          <select className="laptopCPUselect">
+          <select
+            className="laptopCPUselect"
+            name="laptopCPU"
+            value={laptopValues.laptopCPU}
+            onChange={handleChange}
+          >
             {CPUs.map((CPU, index) => (
               <option key={index}>{CPU.name}</option>
             ))}
@@ -171,8 +190,8 @@ export default function LaptopForm() {
             <input
               className="laptopCPUInput"
               placeholder="14"
-              name="CPUcore"
-              values={laptopValues.CPUcore}
+              name="laptopCPUcore"
+              value={laptopValues.laptopCPUcore}
               onChange={handleChange}
             />
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
@@ -182,8 +201,8 @@ export default function LaptopForm() {
             <input
               className="laptopCPUInput"
               placeholder="365"
-              name="CPUstream"
-              value={laptopValues.CPUstream}
+              name="laptopCPUstream"
+              value={laptopValues.laptopCPUstream}
               onChange={handleChange}
             />
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
@@ -195,8 +214,8 @@ export default function LaptopForm() {
             <input
               className="laptopRAMinput"
               placeholder="16"
-              name="CPUram"
-              values={laptopValues.CPUram}
+              name="laptopCPUram"
+              value={laptopValues.laptopCPUram}
               onChange={handleChange}
             />
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
@@ -207,7 +226,7 @@ export default function LaptopForm() {
             </div>
             <div>
               <input type="radio" className="laptopCPUinput" />
-              <label className="laptopMemoryType">SSD</label>
+              <label className="laptopMemoryType"  onChange={handleChange} values>SSD</label>
               <input type="radio" className="laptopCPUtypeInput" />
               <label className="laptopCPUtypeText">HDD</label>
             </div>
@@ -220,8 +239,8 @@ export default function LaptopForm() {
               type="text"
               placeholder="დდ / თთ / წწწწ"
               className="laptopInput"
-              name="purchuaseDate"
-              value={laptopValues.purchuaseDate}
+              name="laptopPurchuaseDate"
+              value={laptopValues.laptopPurchuaseDate}
               onChange={handleChange}
             />
           </div>
@@ -251,13 +270,13 @@ export default function LaptopForm() {
           <Link to={-1} className="laptopBackButton">
             უკან
           </Link>
+          {/* <button onClick={uploadImage}>ფოტო</button> */}
           <Popup
             trigger={
               <button className="laptopSaveButton" onClick={uploadImage}>
                 დამახსოვრება
               </button>
             }
-           
           >
             <PopupMessage />
           </Popup>
