@@ -48,7 +48,6 @@ const EmployeeForm = () => {
     }));
   }
 
-
   // // Fetching data for swagger
   const [teams, setTeams] = useState([]);
   const [positions, setPositions] = useState([]);
@@ -56,15 +55,22 @@ const EmployeeForm = () => {
   useEffect(() => {
     Axios.get("https://pcfy.redberryinternship.ge/api/teams").then(
       (response) => {
-        setTeams(response.data.data);
+        setTeams(response?.data?.data);
       }
     );
     Axios.get("https://pcfy.redberryinternship.ge/api/positions").then(
       (response) => {
-        setPositions(response.data.data);
+        setPositions(response?.data?.data);
       }
     );
   }, []);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     localStorage.clear();
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className="formContainer">
@@ -73,7 +79,7 @@ const EmployeeForm = () => {
           <div className="nameContainer">
             <label>სახელი</label>
             <input
-              minLength="2"
+              required
               type="text"
               placeholder="გრიშა"
               className="nameInput"
@@ -88,7 +94,7 @@ const EmployeeForm = () => {
           <div className="surnameContainer">
             <label>გვარი</label>
             <input
-              minLength="2"
+              required
               type="text"
               placeholder="ბაგრატიონი"
               className="surnameInput"
@@ -107,6 +113,9 @@ const EmployeeForm = () => {
           value={employeeValues.employeeTeam}
           onChange={handleChange}
         >
+          <option disabled={true} value="">
+            თიმი
+          </option>
           {teams.map((team, index) => (
             <option key={index}>{team.name}</option>
           ))}
@@ -117,6 +126,10 @@ const EmployeeForm = () => {
           value={employeeValues.employeePosition}
           onChange={handleChange}
         >
+          <option disabled={true} value="">
+            პოზიცია
+          </option>
+
           {positions.map((position, index) => (
             <option key={index}>{position.name}</option>
           ))}
@@ -124,6 +137,7 @@ const EmployeeForm = () => {
         <div className="mailContainer">
           <label>მეილი</label>
           <input
+            required
             type="email"
             placeholder="grish666@redberry.ge"
             className="mailInput"
@@ -138,6 +152,7 @@ const EmployeeForm = () => {
         <div className="mobileContainer">
           <label>ტელეფონის ნომერი</label>
           <input
+            required
             type="text"
             maxLength="13"
             placeholder="+995 598 00 07 01"
