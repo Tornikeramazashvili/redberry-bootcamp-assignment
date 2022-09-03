@@ -4,8 +4,8 @@ import Popup from "reactjs-popup";
 import Axios from "axios";
 
 import "../components/LaptopForm.css";
-import checkmarkIcon from "../assets/icons/checkmarkIcon.png";
-// import { PopupMessage } from "./PopupMessage";
+// import checkmarkIcon from "../assets/icons/checkmarkIcon.png";
+import { PopupMessage } from "./PopupMessage";
 
 export default function LaptopForm() {
   // Hooks for localStorage
@@ -42,6 +42,7 @@ export default function LaptopForm() {
   // Preventing form from submitting
   function handleSubmit(event) {
     event.preventDefault();
+    // localStorage.clear();
   }
 
   // detecting and storing input values
@@ -51,6 +52,21 @@ export default function LaptopForm() {
       ...previousValues,
       [event.target.name]: v,
     }));
+    // validation
+    if (event.target.name === "laptopName") {
+      if (!isValidName(event.target.value)) {
+        setLaptopNameError("ლათინური ასოები, ციფრები, !@#$%^&*()_+= ");
+      } else {
+        setLaptopNameError(null);
+      }
+    }
+  }
+  // Error messages for validation
+  const [laptopNameError, setLaptopNameError] = useState(null);
+
+  // Regex for validation
+  function isValidName(laptopName) {
+    return /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(laptopName);
   }
 
   // Created useRef for upload button
@@ -105,7 +121,7 @@ export default function LaptopForm() {
   const inputTypeRadios = [
     {
       id: "1",
-      name: "HHD",
+      name: "HDD",
       checked: false,
     },
     {
@@ -194,7 +210,11 @@ export default function LaptopForm() {
               onChange={handleChange}
             />
             <span className="inputMessage">
-              ლათინური ასოები, ციფრები, !@#$%^&*()_+=
+              {laptopNameError ? (
+                <h2 className="inputMessageError">{laptopNameError}</h2>
+              ) : (
+                "ლათინური ასოები, ციფრები, !@#$%^&*()_+="
+              )}
             </span>
           </div>
           <div>
@@ -232,6 +252,7 @@ export default function LaptopForm() {
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ბირთვი</span>
             <input
+              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
               required
               className="laptopCPUInput"
               placeholder="14"
@@ -244,6 +265,7 @@ export default function LaptopForm() {
           <div className="laptopCPUinputContainer">
             <span className="laptopCPUtext">CPU-ს ნაკადი</span>
             <input
+              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
               required
               className="laptopCPUInput"
               placeholder="365"
@@ -258,6 +280,7 @@ export default function LaptopForm() {
           <div className="laptopRAM">
             <span className="laptopCPUtext">ლეპტოპის RAM (GB)</span>
             <input
+              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
               required
               className="laptopRAMinput"
               placeholder="16"
@@ -274,6 +297,7 @@ export default function LaptopForm() {
             <div
               style={{
                 display: "flex",
+                flexDirection: "row-reverse",
                 columnGap: 20,
               }}
             >
@@ -310,6 +334,7 @@ export default function LaptopForm() {
           <div className="laptopPurchase">
             <label>ლეპტოპის ფასი</label>
             <input
+              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
               required
               type="text"
               placeholder="0000"
@@ -321,7 +346,7 @@ export default function LaptopForm() {
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
           </div>
         </div>
-        <div>
+        <div style={{ marginTop: 83 }}>
           <label>ლეპტოპის მდგომარეობა</label>
           <div className="laptopPostureContainer">
             <div
@@ -334,6 +359,7 @@ export default function LaptopForm() {
               {inputLeptopCondition.map((condition, index) => (
                 <>
                   <input
+                    required
                     type="radio"
                     name="laptopCondition"
                     checked={
@@ -352,23 +378,15 @@ export default function LaptopForm() {
           <Link to={-1} className="laptopBackButton">
             უკან
           </Link>
+          {/* <button onClick={uploadImage}>click</button> */}
+
           <button
             className="laptopSaveButton"
             onSubmit={handleSubmit}
-            onClick={uploadImage}
+            onClick={(uploadImage, uploadImage)}
           >
             დამახსოვრება
           </button>
-
-          {/* <Popup
-            trigger={
-              <button className="laptopSaveButton" onClick={uploadImage}>
-                დამახსოვრება
-              </button>
-            }
-          >
-            <PopupMessage />
-          </Popup> */}
         </div>
       </form>
     </div>

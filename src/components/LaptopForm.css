@@ -77,6 +77,13 @@
   align-items: center;
 }
 
+.inputMessageError{
+  font-size: 14px;
+  color: #E52F2F;
+  cursor: default;
+  font-weight: 300;
+}
+
 .laptopUploadImageAgainButton {
   background-color: #62a1eb;
   padding: 18px 24px;
