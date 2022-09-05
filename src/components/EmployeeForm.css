@@ -90,9 +90,9 @@ select {
   cursor: default;
 }
 
-.inputMessageError{
+.inputMessageError {
   font-size: 14px;
-  color: #E52F2F;
+  color: #e52f2f;
   cursor: default;
   font-weight: 300;
 }
@@ -123,4 +123,69 @@ select {
 .nextButton:hover {
   background-color: #317ad0;
   transition: 0.2s;
+}
+
+@media (max-width: 390px) {
+  .goBack-container {
+    margin: 0px;
+    padding: 31px 18px;
+    background-color: #f6f6f6;
+  }
+
+  .E-laptopInformation {
+    display: none;
+  }
+  .E-employeeInformation {
+    position: static;
+  }
+  .formContainer {
+    background-color: white;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 49px;
+  }
+  .E-formContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 16px;
+  }
+  .nameInput,
+  .surnameInput {
+    width: 358px;
+  }
+  .nameAndSurnameContainer {
+    display: block;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nameContainer{
+    margin-bottom: 23px;
+  }
+  .positionSelect{
+    margin-top: 26px;
+    width: 358px;
+  }
+  .mailContainer{
+    display: flex;
+    flex-direction: column;
+    width: 358px;
+    margin-top: 25px;
+  }
+  .mobileContainer{
+    margin-top: 22px;
+  }
+  .buttonContainer{
+    margin-top: 43px;
+  }
+  .nextButton{
+    font-size: 12px;
+  }
+  .buttonContainer{
+    display: flex;
+    justify-content: flex-end;
+    width: 358px;
+  }
 }

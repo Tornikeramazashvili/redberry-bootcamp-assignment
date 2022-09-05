@@ -5,6 +5,8 @@ import "../../pages/landing/Landing.css";
 import redberryLogo from "../../assets/images/redberryLogo.png";
 import landingLogo from "../../assets/images/landingLogo.png";
 
+import responsive from "../../assets/images/responsive.png"
+
 export default function Landing() {
   const navigate = useNavigate();
 
@@ -17,7 +19,8 @@ export default function Landing() {
             alt="Redberry logo"
             className="L-redberryLogo"
           />
-          <img src={landingLogo} alt="Landing logo" className="L-landingLogo" />
+          <img src={landingLogo} alt="Landing" className="L-landingLogo" />
+          <img src={responsive} alt="Laptop" className="L-hiddenImage" />
         </div>
         <div className="L-button-container">
           <button

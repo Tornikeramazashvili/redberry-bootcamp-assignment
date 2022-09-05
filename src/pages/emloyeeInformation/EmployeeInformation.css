@@ -47,3 +47,34 @@
   justify-content: center;
   margin-bottom: 45px;
 }
+
+@media (max-width: 390px) {
+  .goBack-container {
+    margin: 0px;
+    padding: 31px 18px;
+    background-color: #f6f6f6;
+  }
+
+  .E-laptopInformation {
+    display: none;
+  }
+  .E-employeeInformation {
+    position: static;
+  }
+  .formContainer {
+    background-color: white;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 49px;
+  }
+  .E-formContainer {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .nameInput, .surnameInput {
+    width: 358px;
+  }
+  .E-redberryLogoContainer{
+    display: none;
+  }
+}

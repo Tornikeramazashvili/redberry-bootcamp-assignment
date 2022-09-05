@@ -77,11 +77,16 @@
   align-items: center;
 }
 
-.inputMessageError{
+.inputMessageError {
   font-size: 14px;
-  color: #E52F2F;
+  color: #e52f2f;
   cursor: default;
   font-weight: 300;
+  border-color: red;
+}
+
+.inputMessageBorder {
+  border-color: red;
 }
 
 .laptopUploadImageAgainButton {
@@ -224,6 +229,12 @@
   font-weight: 400;
 }
 
+.laptopCPUmemoryTypeContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 60px;
+}
+
 .laptopCPUinputContainer {
   position: relative;
 }
@@ -254,14 +265,52 @@
   margin-top: 50px;
 }
 
+.laptopPurchaseInputContainer {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.laptopPurchaseGel {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.laptopMemoryTypeInputContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 18px;
+}
+
+.laptopMemoryTypeInput,
+.laptopConditionSelectInput {
+  width: 20px;
+  height: 20px;
+}
+
 .laptopPurchase {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
 }
 
-.laptopPostureContainer {
+.laptopConditionContainer {
+  margin-top: 75px;
+}
+
+.laptopCondition {
   margin-top: 28px;
+}
+
+.laptopConditionSelect {
+  display: flex;
+  column-gap: 62px;
+}
+
+.laptopConditionSelectContainer {
+  display: flex;
+  column-gap: 18px;
 }
 
 .laptopButtons {
@@ -296,14 +345,4 @@
 .laptopSaveButton:hover {
   background-color: #317ad0;
   transition: 0.2s;
-}
-
-.inputa {
-  display: none;
-}
-
-.zabuza {
-  display: block;
-  width: 120px;
-  height: 30px;
 }

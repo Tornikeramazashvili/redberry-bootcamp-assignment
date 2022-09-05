@@ -19,71 +19,6 @@ const EmployeeForm = () => {
     );
   }, [employeeValues]);
 
-  // detecting and storing input values
-  function handleChange(event) {
-    setEmployeeValues((previousValues) => ({
-      ...previousValues,
-      [event.target.name]: event.target.value,
-    }));
-
-    // Name validation
-    if (event.target.name === "employeeName") {
-      if (!isValidName(event.target.value)) {
-        setNameError("გამოიყენე ქართული ასოები");
-      } else {
-        setNameError(null);
-      }
-    }
-    // Surname validation
-    if (event.target.name === "employeeSurname") {
-      if (!isValidSurname(event.target.value)) {
-        setSurnameError("გამოიყენე ქართული ასოები");
-      } else {
-        setSurnameError(null);
-      }
-    }
-    // Email validation
-    if (event.target.name === "employeeEmail") {
-      if (!isValidEmail(event.target.value)) {
-        setEmailError("უნდა მთავრდებოდეს @redberry.ge-ით");
-      } else {
-        setEmailError(null);
-      }
-    }
-    // Mobile validation
-    if (event.target.name === "employeeMobile") {
-      if (!isValidMobile(event.target.value)) {
-        setMobileError("უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს");
-      } else {
-        setMobileError(null);
-      }
-    }
-  }
-
-  // Error messages for validation
-  const [nameError, setNameError] = useState(null);
-  const [surnameError, setSurnameError] = useState(null);
-  const [emailError, setEmailError] = useState(null);
-  const [mobileError, setMobileError] = useState(null);
-
-  // Regex for validation
-  function isValidName(name) {
-    return /^[ა-ჰ]+$/.test(name);
-  }
-
-  function isValidSurname(surname) {
-    return /^[ა-ჰ]+$/.test(surname);
-  }
-
-  function isValidEmail(email) {
-    return /\S+@\S+\.\S+/.test(email);
-  }
-
-  function isValidMobile(mobile) {
-    return /^(\+?995)?(79\d{7}|5\d{8})$/.test(mobile);
-  }
-
-  // ...................................................
   // getting values that are already saved in localStorage,
   // and checking with if...else statement to see results eventually
   function getEmployeeValues() {
@@ -100,7 +35,71 @@ const EmployeeForm = () => {
     return JSON.parse(storedValues);
   }
 
-  // // Fetching data for swagger
+  // detecting and storing input values
+  function handleChange(event) {
+    setEmployeeValues((previousValues) => ({
+      ...previousValues,
+      [event.target.name]: event.target.value,
+    }));
+
+    // Validations
+    if (event.target.name === "employeeName") {
+      if (!isValidName(event.target.value)) {
+        setNameError("გამოიყენე ქართული ასოები");
+      } else {
+        setNameError(null);
+      }
+    }
+
+    if (event.target.name === "employeeSurname") {
+      if (!isValidSurname(event.target.value)) {
+        setSurnameError("გამოიყენე ქართული ასოები");
+      } else {
+        setSurnameError(null);
+      }
+    }
+
+    if (event.target.name === "employeeEmail") {
+      if (!isValidEmail(event.target.value)) {
+        setEmailError("უნდა მთავრდებოდეს @redberry.ge-ით");
+      } else {
+        setEmailError(null);
+      }
+    }
+
+    if (event.target.name === "employeeMobile") {
+      if (!isValidMobile(event.target.value)) {
+        setMobileError("უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს");
+      } else {
+        setMobileError(null);
+      }
+    }
+  }
+
+  // Error messages for validation
+  const [nameError, setNameError] = useState(null);
+  const [surnameError, setSurnameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [mobileError, setMobileError] = useState(null);
+
+  // Regex for validations
+  function isValidName(name) {
+    return /^[ა-ჰ]+$/.test(name);
+  }
+
+  function isValidSurname(surname) {
+    return /^[ა-ჰ]+$/.test(surname);
+  }
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  function isValidMobile(mobile) {
+    return /^(\+?995)?(79\d{7}|5\d{8})$/.test(mobile);
+  }
+
+  // Fetching data for swagger
   const [teams, setTeams] = useState([]);
   const [positions, setPositions] = useState([]);
 
@@ -117,34 +116,40 @@ const EmployeeForm = () => {
     );
   }, []);
 
+  // if everything is filled, go to the next page
+  function SubmitButton() {
+    if (
+      employeeValues.employeeName &&
+      employeeValues.employeeSurname &&
+      employeeValues.employeeTeam &&
+      employeeValues.employeePosition &&
+      employeeValues.employeeEmail &&
+      employeeValues.employeeMobile
+    ) {
+      navigate("/laptopInformation");
+    } else {
+      return <button type="button" disabled />;
+    }
+  }
+
   // Preventing form from submitting
   function handleSubmit(event) {
     event.preventDefault();
-    // here should be axios post
-    // localstorage should be in .then
   }
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     localStorage.clear();
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
 
   return (
     <div className="formContainer">
-      <form action="" method="POST" onSubmit={handleSubmit} required>
+      <form onSubmit={handleSubmit} required>
         <div className="nameAndSurnameContainer">
           <div className="nameContainer">
             <label>სახელი</label>
             <input
-              minLength="2"
               required
-              id="name"
               type="text"
-              placeholder="გრიშა"
-              className="nameInput"
+              minLength="2"
               name="employeeName"
+              placeholder="გრიშა"
+              className={`nameInput ${nameError && "inputMessageBorder"}`}
               value={employeeValues.employeeName}
               onChange={handleChange}
             />
@@ -159,12 +164,12 @@ const EmployeeForm = () => {
           <div className="surnameContainer">
             <label>გვარი</label>
             <input
-              minLength="2"
               required
               type="text"
-              placeholder="ბაგრატიონი"
-              className="surnameInput"
+              minLength="2"
               name="employeeSurname"
+              placeholder="ბაგრატიონი"
+              className={`nameInput ${surnameError && "inputMessageBorder"}`}
               value={employeeValues.employeeSurname}
               onChange={handleChange}
             />
@@ -184,7 +189,7 @@ const EmployeeForm = () => {
           value={employeeValues.employeeTeam}
           onChange={handleChange}
         >
-          <option disabled={true} value="">
+          <option hidden={true} value="">
             თიმი
           </option>
           {teams.map((team, index) => (
@@ -198,7 +203,7 @@ const EmployeeForm = () => {
           value={employeeValues.employeePosition}
           onChange={handleChange}
         >
-          <option disabled={true} value="">
+          <option hidden={true} value="">
             პოზიცია
           </option>
           {positions.map((position, index) => (
@@ -209,11 +214,10 @@ const EmployeeForm = () => {
           <label>მეილი</label>
           <input
             required
-            id="email"
             type="email"
-            placeholder="grish666@redberry.ge"
-            className="mailInput"
             name="employeeEmail"
+            placeholder="grish666@redberry.ge"
+            className={`mailInput ${emailError && "inputMessageBorder"}`}
             value={employeeValues.employeeEmail}
             onChange={handleChange}
           />
@@ -228,12 +232,12 @@ const EmployeeForm = () => {
         <div className="mobileContainer">
           <label>ტელეფონის ნომერი</label>
           <input
-            maxLength="13"
             required
             type="text"
-            placeholder="+995 598 00 07 01"
-            className="mailInput"
+            maxLength="13"
             name="employeeMobile"
+            placeholder="+995 598 00 07 01"
+            className={`mailInput ${mobileError && "inputMessageBorder"}`}
             value={employeeValues.employeeMobile}
             onChange={handleChange}
           />
@@ -246,12 +250,7 @@ const EmployeeForm = () => {
           </span>
         </div>
         <div className="buttonContainer">
-          <button
-            type="submit"
-            className="nextButton"
-            onSubmit={handleSubmit}
-            // onClick={() => navigate("/laptopInformation")}
-          >
+          <button type="submit" className="nextButton" onClick={SubmitButton}>
             შემდეგი
           </button>
         </div>

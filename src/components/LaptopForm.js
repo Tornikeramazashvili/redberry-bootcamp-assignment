@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Popup from "reactjs-popup";
 import Axios from "axios";
 
 import "../components/LaptopForm.css";
-// import checkmarkIcon from "../assets/icons/checkmarkIcon.png";
-import { PopupMessage } from "./PopupMessage";
+import GEL from "../assets/icons/GEL.png";
 
 export default function LaptopForm() {
   // Hooks for localStorage
@@ -39,12 +37,6 @@ export default function LaptopForm() {
     return JSON.parse(storedValues);
   }
 
-  // Preventing form from submitting
-  function handleSubmit(event) {
-    event.preventDefault();
-    // localStorage.clear();
-  }
-
   // detecting and storing input values
   function handleChange(event) {
     let v = event.target.value;
@@ -64,7 +56,7 @@ export default function LaptopForm() {
   // Error messages for validation
   const [laptopNameError, setLaptopNameError] = useState(null);
 
-  // Regex for validation
+  // Regex for validations
   function isValidName(laptopName) {
     return /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(laptopName);
   }
@@ -84,20 +76,13 @@ export default function LaptopForm() {
       "https://api.cloudinary.com/v1_1/dzdluvy3z/image/upload",
       formData
     )
-      .then((response) => {
-        // setSentImageName(response.data.original_filename);
-        // setSentImageFormat(response.data.format);
-        // setSentImageBytes(bytesToMegaBytes(response.data.bytes).toFixed(2));
-      })
+      .then((response) => {})
       .catch((response) => {
         setImageDidntSend(response.response.data?.error?.message);
       });
   };
 
-  const bytesToMegaBytes = (bytes) => bytes / 1024 ** 2;
-  // const [sentImageName, setSentImageName] = useState(false);
-  // const [sentImageFormat, setSentImageFormat] = useState(false);
-  // const [sentImageBytes, setSentImageBytes] = useState(false);
+  // laptop image didn't upload error mesage
   const [imageDidntSend, setImageDidntSend] = useState(false);
 
   // Fetching API data with Axios
@@ -117,7 +102,7 @@ export default function LaptopForm() {
     );
   }, []);
 
-  // Input types
+  // Custom inputs for memory type and laptopcondition
   const inputTypeRadios = [
     {
       id: "1",
@@ -131,7 +116,7 @@ export default function LaptopForm() {
     },
   ];
 
-  const inputLeptopCondition = [
+  const inputLaptopCondition = [
     {
       id: "1",
       name: "ახალი",
@@ -144,16 +129,73 @@ export default function LaptopForm() {
     },
   ];
 
+  // if everything is filled, submit the form
+  function SendForm() {
+    if (
+      uploadImage() &&
+      laptopValues.laptopName &&
+      laptopValues.laptopBrand &&
+      laptopValues.laptopCPU &&
+      laptopValues.laptopCPUcore &&
+      laptopValues.laptopCPUstream &&
+      laptopValues.laptopCPUram &&
+      laptopValues.laptopPrice &&
+      laptopValues.laptopMemoryType &&
+      laptopValues.laptopCondition
+    ) {
+      return <></>;
+    } else {
+      return <button type="button" disabled />;
+    }
+  }
+
+  // Sending form to the server
+
+  // const [employeeInfo, setEmployeeInfo] = useState({});
+
   // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     localStorage.clear();
-  //   }, 1000);
-  //   return () => clearInterval(interval);
+  //   setEmployeeInfo(JSON.parse(localStorage.getItem("employee-information")));
   // }, []);
+
+  // const headers = {"Content-Type": "application/json"};
+  // const url = "https://pcfy.redberryinternship.ge/api/laptop/create";
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // const formData = new FormData();
+
+    // formData.append("name", employeeInfo?.employeeName);
+    // formData.append("surname", employeeInfo?.employeeSurname);
+    // formData.append("team_id", employeeInfo?.employeeTeam);
+    // formData.append("position_id", employeeInfo?.employeePosition);
+    // formData.append("phone_number", employeeInfo?.employeeMobile);
+    // formData.append("email", employeeInfo?.employeeEmail);
+    // formData.append("token", "24f4bdaed401dc0718b72e08c47d76ff");
+    // formData.append("laptop_name", employeeInfo?.laptopName);
+    // formData.append("laptop_image", imageSelected);
+    // formData.append("laptop_brand_id", employeeInfo?.laptopBrand);
+    // formData.append("laptop_cpu", employeeInfo?.laptopCPU);
+    // formData.append("laptop_cpu_cores", employeeInfo?.laptopCPUcore);
+    // formData.append("laptop_cpu_threads", employeeInfo?.laptopCPUstream);
+    // formData.append("laptop_ram", employeeInfo?.laptopCPUram);
+    // formData.append("laptop_hard_drive_type", employeeInfo?.laptopMemoryType);
+    // formData.append("laptop_state", employeeInfo?.laptopCondition);
+    // formData.append("laptop_purchase_date", employeeInfo?.laptopPurchuaseDate);
+    // formData.append("laptop_price", employeeInfo?.laptopPrice);
+
+    // Axios.post(url, formData, {
+    //   headers: headers,
+    // })
+    //   .then((response) => console.log("Success:", response))
+    //   .catch((response) => {
+    //     setImageDidntSend(response.response.data?.error?.message);
+    //   });
+  };
 
   return (
     <div className="laptopFormContainer">
-      <form action="" method="POST" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} required>
         <div
           className={`laptopImageContainer ${
             imageDidntSend && "InvalidLaptopImage"
@@ -178,34 +220,18 @@ export default function LaptopForm() {
             onChange={(event) => {
               setImageSelected(event.target.files[0]);
             }}
-            // value={laptopValues.laptopImage}
-            // onChange={handleChange}
           />
         </div>
-        {/* ... */}
-        {/* <div className={`"laptopImageUploadMessage" ${sentImageName} && "za" `}>
-          <div className="laptopImageUploadMessageBox">
-            <img src={checkmarkIcon} alt="Checkmark" />
-            <span className="laptopImageUploadMessageText">
-              {sentImageName}.{sentImageFormat}, {sentImageBytes} mb
-            </span>
-          </div>
-
-          <button className="laptopUploadImageAgainButton">
-            თავიდან ატვირთე
-          </button>
-        </div> */}
-        {/*  */}
         <div className="laptopBrandContainer">
           <div className="laptopNameContainer">
             <label>ლეპტოპის სახელი</label>
             <input
+              id="laptopName"
               required
-              minLength="2"
               type="text"
+              name="laptopName"
               placeholder="HP"
               className="laptopInput"
-              name="laptopName"
               value={laptopValues.laptopName}
               onChange={handleChange}
             />
@@ -225,7 +251,7 @@ export default function LaptopForm() {
               value={laptopValues.laptopBrand}
               onChange={handleChange}
             >
-              <option disabled={true} value="">
+              <option hidden={true} value="">
                 ლეპტოპის ბრენდი
               </option>
               {brands.map((brand, index) => (
@@ -242,7 +268,7 @@ export default function LaptopForm() {
             value={laptopValues.laptopCPU}
             onChange={handleChange}
           >
-            <option disabled={true} value="">
+            <option hidden={true} value="">
               CPU
             </option>
             {CPUs.map((CPU, index) => (
@@ -294,15 +320,9 @@ export default function LaptopForm() {
             <div>
               <span className="laptopCPUtext">მეხსიერების ტიპი</span>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row-reverse",
-                columnGap: 20,
-              }}
-            >
+            <div className="laptopCPUmemoryTypeContainer">
               {inputTypeRadios.map((radio, index) => (
-                <>
+                <div className="laptopMemoryTypeInputContainer">
                   <label key={index}>{radio.name}</label>
                   <input
                     required
@@ -311,10 +331,11 @@ export default function LaptopForm() {
                     checked={
                       laptopValues.laptopMemoryType === radio.name && true
                     }
+                    className="laptopMemoryTypeInput"
                     value={radio.name}
                     onChange={handleChange}
                   />
-                </>
+                </div>
               ))}
             </div>
           </div>
@@ -333,31 +354,28 @@ export default function LaptopForm() {
           </div>
           <div className="laptopPurchase">
             <label>ლეპტოპის ფასი</label>
-            <input
-              onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
-              required
-              type="text"
-              placeholder="0000"
-              className="laptopInput"
-              name="laptopPrice"
-              value={laptopValues.laptopPrice}
-              onChange={handleChange}
-            />
+            <div className="laptopPurchaseInputContainer">
+              <input
+                onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+                required
+                type="text"
+                placeholder="0000"
+                className="laptopInput"
+                name="laptopPrice"
+                value={laptopValues.laptopPrice}
+                onChange={handleChange}
+              />
+              <img src={GEL} alt="Gel" className="laptopPurchaseGel" />
+            </div>
             <span className="laptopCPUmessage">მხოლოდ ციფრები</span>
           </div>
         </div>
-        <div style={{ marginTop: 83 }}>
+        <div className="laptopConditionContainer">
           <label>ლეპტოპის მდგომარეობა</label>
-          <div className="laptopPostureContainer">
-            <div
-              style={{
-                display: "flex",
-                columnGap: 20,
-                // flexDirection: "row-reverse",
-              }}
-            >
-              {inputLeptopCondition.map((condition, index) => (
-                <>
+          <div className="laptopCondition">
+            <div className="laptopConditionSelect">
+              {inputLaptopCondition.map((condition, index) => (
+                <div className="laptopConditionSelectContainer">
                   <input
                     required
                     type="radio"
@@ -365,11 +383,12 @@ export default function LaptopForm() {
                     checked={
                       laptopValues.laptopCondition === condition.name && true
                     }
+                    className="laptopConditionSelectInput"
                     value={condition.name}
                     onChange={handleChange}
                   />
                   <label key={index}>{condition.name}</label>
-                </>
+                </div>
               ))}
             </div>
           </div>
@@ -378,13 +397,7 @@ export default function LaptopForm() {
           <Link to={-1} className="laptopBackButton">
             უკან
           </Link>
-          {/* <button onClick={uploadImage}>click</button> */}
-
-          <button
-            className="laptopSaveButton"
-            onSubmit={handleSubmit}
-            onClick={(uploadImage, uploadImage)}
-          >
+          <button className="laptopSaveButton" type="submit" onClick={SendForm}>
             დამახსოვრება
           </button>
         </div>

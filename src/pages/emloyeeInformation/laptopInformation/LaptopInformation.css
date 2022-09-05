@@ -30,9 +30,40 @@
   cursor: pointer;
 }
 
-
 .links-container {
   display: flex;
   column-gap: 66px;
   justify-content: center;
+}
+
+@media (max-width: 390px) {
+  .goBack-container {
+    margin: 0px;
+    padding: 31px 18px;
+    background-color: #f6f6f6;
+  }
+
+  .E-laptopInformation {
+    display: none;
+  }
+  .E-employeeInformation {
+    position: static;
+  }
+  .formContainer {
+    background-color: white;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 49px;
+  }
+  .E-form-container {
+    display: flex;
+  }
+  .links-container {
+    position: absolute;
+    left: 100px;
+    top: 46px;
+  }
+  .formContainer {
+    margin-bottom: 58px;
+  }
 }

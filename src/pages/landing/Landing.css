@@ -7,6 +7,10 @@
   /* margin-bottom: 147px; */
 }
 
+.L-hiddenImage {
+  display: none;
+}
+
 .L-image-container {
   display: flex;
   flex-direction: column;
@@ -40,4 +44,17 @@
 .L-addEntriesButton:hover {
   background-color: #317ad0;
   transition: 0.2s;
+}
+
+@media (max-width: 390px) {
+  .L-landingLogo {
+    display: none;
+  }
+  .L-hiddenImage {
+    display: block;
+    margin-top: 117px;
+  }
+  .L-button-container {
+    margin-top: 100px;
+  }
 }
